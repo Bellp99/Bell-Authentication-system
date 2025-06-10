@@ -1,6 +1,6 @@
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { login } from "../fetch";
 
 export const Login = () => {
@@ -12,8 +12,13 @@ export const Login = () => {
     const handleClick = () => {
         //Create a fetch to attemp to retrieve an access_token
         login(email, password, dispatch)
-            .then(() => console.log("it worked"))
     }
+
+    useEffect(() => {
+        if(store.isLoginSuccessful){
+            navigate('/private')
+        }
+    }, [store.isLoginSuccessful])
 
     return (
         <>
