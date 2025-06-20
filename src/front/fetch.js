@@ -44,15 +44,15 @@ export const login = async(email, password, dispatch) => {
 export const logout = (dispatch) => {
   sessionStorage.removeItem('token');
   dispatch({
-        type: 'loggedOut',
+        type: 'LoggedOut',
         payload: {
           message: null,
           token: null,
           isLoginSuccessful: false,
+          loggedIn: false
         }
       });
 }
-
 export const signOut = async(email, password, dispatch) => {
     const options = {
         method: 'POST',
